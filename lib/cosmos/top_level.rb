@@ -594,7 +594,8 @@ module Cosmos
   # @param log_error [Boolean] Whether to log an error if we can not require
   #   the class
   def self.require_class(class_name_or_class_filename, log_error = true)
-    if class_name_or_class_filename.downcase[-3..-1] == '.rb'
+    if (class_name_or_class_filename.downcase[-3..-1] == '.rb') || # Ends in .rb
+      (class_name_or_class_filename[0] == class_name_or_class_filename[0].downcase) # Starts with lowercase
       class_filename = class_name_or_class_filename
       class_name = class_filename.filename_to_class_name
     else
